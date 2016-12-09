@@ -1,2 +1,2 @@
-# papers
-Supplementary materials for papers
+# Papers
+This repository holds supplementary materials for papers.
