@@ -54,8 +54,8 @@ def plot_data(settings):
     """
     Load data and plot results
     """
-    result = load_real_data(rot90=1)
-    simdata = load_real_data(filename=settings['filename'])
+    expdata = load_real_data(rot90=1)       # experimental data
+    simdata = load_real_data(filename=settings['filename'])     # simulated data
 
     # showing the result
     #=======
@@ -64,9 +64,9 @@ def plot_data(settings):
     plt.suptitle(settings['title'], fontsize=18)
     ax = plt.subplot(2,2,1)
     plt.subplots_adjust(wspace=0.2, hspace=0.3)
-    im = plt.imshow(result.getArray() + 1.0,
+    im = plt.imshow(expdata.getArray() + 1.0,
                     norm=matplotlib.colors.LogNorm(1.0, 501.0),
-                    extent=[result.getXmin(), result.getXmax(), result.getYmin(), result.getYmax()],
+                    extent=[expdata.getXmin(), expdata.getXmax(), expdata.getYmin(), expdata.getYmax()],
                     aspect='auto')
     # show the integration area over x range
     ax.add_patch(
@@ -111,27 +111,27 @@ def plot_data(settings):
     # slice along qy
     # =======
     plt.subplot(2, 2, 3)
-    slice = sum_over_yrange(result, yrange)
+    expslice = sum_over_yrange(expdata, yrange)
     simslice = sum_over_yrange(simdata, yrange)
     plt.semilogy(simslice.getBinCenters(), settings['f']*simslice.getBinValues() + noise, color='g', linewidth=2)
-    plt.semilogy(slice.getBinCenters(), slice.getBinValues(), color='k', marker='.', linestyle='None')
-    plt.xlim(slice.getXmin(), slice.getXmax())
+    plt.semilogy(expslice.getBinCenters(), expslice.getBinValues(), color='k', marker='.', linestyle='None')
+    plt.xlim(expslice.getXmin(), expslice.getXmax())
     plt.ylim(1e-3, 200.0)
     plt.xlabel(r'channel$_y$', fontsize=16)
-    plt.ylabel(r'$I$ (a. u.)', fontsize=16)
+    plt.ylabel(r'Intensity (arb. u.)', fontsize=16)
 
     # =======
     # slice along qz
     # =======
     plt.subplot(2, 2, 4)
-    slice = sum_over_xrange(result, xrange)
+    expslice = sum_over_xrange(expdata, xrange)
     simslice = sum_over_xrange(simdata, xrange)
     plt.semilogy(simslice.getBinCenters(), settings['f']*simslice.getBinValues() + noise, color='r', linewidth=2)
-    plt.semilogy(slice.getBinCenters(), slice.getBinValues(), color='k', marker='.', linestyle='None')
-    plt.xlim(slice.getXmin(), slice.getXmax())
+    plt.semilogy(expslice.getBinCenters(), expslice.getBinValues(), color='k', marker='.', linestyle='None')
+    plt.xlim(expslice.getXmin(), expslice.getXmax())
     plt.ylim(1e-3, 200.0)
     plt.xlabel(r'channel$_z$', fontsize=16)
-    plt.ylabel(r'$I$ (a. u.)', fontsize=16)
+    plt.ylabel(r'Intensity (arb. u.)', fontsize=16)
 
     plt.show()
 
