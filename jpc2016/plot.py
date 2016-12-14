@@ -8,19 +8,19 @@ import bornagain as ba
 datafile = "sc11929_27.dat"
 
 # integration range
-xrange = (5, 230)
-yrange = (115, 135)
+x_range = (5, 230)
+y_range = (115, 135)
 
 # noise accounts for the constant background noise
 noise = 0.2
 
 # settings for plotting
 settings_hexagonal = {'title': "Hexagonal Lattice",
-                      'filename': "results/sim2016-12-07T15:30:04.dat",
-                      'f': 1.75}
+                      'filename': "results/sim2016-12-14T13:09:28.dat",
+                      'f': 1.0}
 settings_fcc = {'title': r"FCC Lattice with $\beta=64.55^{\circ}$",
-                'filename': "results/sim2016-12-07T16:58:58.dat",
-                'f': 0.008}
+                'filename': "results/sim2016-12-14T13:27:46.dat",
+                'f': 1.0}
 
 
 def load_real_data(filename=datafile, rot90=0):
@@ -58,11 +58,11 @@ def plot_data(settings):
     simdata = load_real_data(filename=settings['filename'])     # simulated data
 
     # showing the result
-    #=======
+    # =======
     # experimental data
-    #=======
+    # =======
     plt.suptitle(settings['title'], fontsize=18)
-    ax = plt.subplot(2,2,1)
+    ax = plt.subplot(2, 2, 1)
     plt.subplots_adjust(wspace=0.2, hspace=0.3)
     im = plt.imshow(expdata.getArray() + 1.0,
                     norm=matplotlib.colors.LogNorm(1.0, 501.0),
@@ -71,8 +71,8 @@ def plot_data(settings):
     # show the integration area over x range
     ax.add_patch(
         patches.Rectangle(
-            (xrange[0], 2),  # (x,y)
-            xrange[1]-xrange[0],  # width
+            (x_range[0], 2),  # (x,y)
+            x_range[1] - x_range[0],  # width
             237,  # height
             fill=False, edgecolor="red", linewidth=2
         )
@@ -80,9 +80,9 @@ def plot_data(settings):
     # show the integration area over y range
     ax.add_patch(
         patches.Rectangle(
-            (2, yrange[0]),  # (x,y)
+            (2, y_range[0]),  # (x,y)
             230,  # width
-            yrange[1] - yrange[0],  # height
+            y_range[1] - y_range[0],  # height
             fill=False, edgecolor="green", linewidth=2
         )
     )
@@ -111,8 +111,8 @@ def plot_data(settings):
     # slice along qy
     # =======
     plt.subplot(2, 2, 3)
-    expslice = sum_over_yrange(expdata, yrange)
-    simslice = sum_over_yrange(simdata, yrange)
+    expslice = sum_over_yrange(expdata, y_range)
+    simslice = sum_over_yrange(simdata, y_range)
     plt.semilogy(simslice.getBinCenters(), settings['f']*simslice.getBinValues() + noise, color='g', linewidth=2)
     plt.semilogy(expslice.getBinCenters(), expslice.getBinValues(), color='k', marker='.', linestyle='None')
     plt.xlim(expslice.getXmin(), expslice.getXmax())
@@ -124,8 +124,8 @@ def plot_data(settings):
     # slice along qz
     # =======
     plt.subplot(2, 2, 4)
-    expslice = sum_over_xrange(expdata, xrange)
-    simslice = sum_over_xrange(simdata, xrange)
+    expslice = sum_over_xrange(expdata, x_range)
+    simslice = sum_over_xrange(simdata, x_range)
     plt.semilogy(simslice.getBinCenters(), settings['f']*simslice.getBinValues() + noise, color='r', linewidth=2)
     plt.semilogy(expslice.getBinCenters(), expslice.getBinValues(), color='k', marker='.', linestyle='None')
     plt.xlim(expslice.getXmin(), expslice.getXmax())
