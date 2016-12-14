@@ -172,8 +172,8 @@ def simulate():
     np.savetxt(outfile, simul_data.getArray(), delimiter='\t', newline='\n')
 
     # plot data
-    # plot_settings = {'title': "Hexagonal Lattice", 'filename': outfile, 'f': 1.0}
-    plot_settings = {'title': r"FCC Lattice with $\beta=64.55^{\circ}$", 'filename': outfile, 'f': 1.0}
+    plot_settings = {'title': "Hexagonal Lattice", 'filename': outfile, 'f': 1.0}
+    # plot_settings = {'title': r"FCC Lattice with $\beta=64.55^{\circ}$", 'filename': outfile, 'f': 1.0}
     plot_data(plot_settings)
 
 
