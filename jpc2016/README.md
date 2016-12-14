@@ -20,7 +20,7 @@ Each domain is represented as a mesocrystal of about 200 nm height and 1 microme
 
 ![Lattice schematics.](img/lattice.png) 
 
-The domain is constructed of the cylindrical particles. The cylinders assumed to have radius of 3 nm, length of 1 micrometer and are arranged in the lattice as shown above. In the simulation, the lattice is described by 3 vectors as follows.
+The domain is constructed of the cylindrical particles. The cylinders assumed to have radius of 3 nm, length *L* equal to 1 micrometer and are arranged in the lattice as shown above. In the simulation, the lattice is described by 3 vectors as follows:
 
 ![Lattice vectors.](img/vectors.png)  
 
