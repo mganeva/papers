@@ -1,5 +1,8 @@
 # Supplementary materials for paper in the Journal of Physical Chemistry
 
+T. Nylander, et. al. *Relationship between Structure and Fluctuations of Lipid Nonlamellar Phases Deposited at the Solid–Liquid Interface.*
+[J. Phys. Chem. B 121, 2705-2711 (2017)](http://pubs.acs.org/doi/abs/10.1021/acs.jpcb.6b11038)
+
 ## Note
 
 To run the scripts it is required to have the [BornAgain software](http://bornagainproject.org/) installed. The installation instructions are available [here](http://bornagainproject.org/documentation/installation).
